@@ -38,4 +38,33 @@ mod rust_rover_tests {
         assert_eq!(rover.coordinate, starting_coordinate);
         assert_eq!(rover.direction, starting_direction);
     }
+
+    #[test]
+    fn rover_can_have_north_direction() {
+        let rover: RustRover = construct_rover_with_direction(Direction::North.clone());
+        assert_eq!(rover.direction, Direction::North);
+    }
+
+    #[test]
+    fn rover_can_have_east_direction() {
+        let rover: RustRover = construct_rover_with_direction(Direction::East.clone());
+        assert_eq!(rover.direction, Direction::East);
+    }
+
+    #[test]
+    fn rover_can_have_south_direction() {
+        let rover: RustRover = construct_rover_with_direction(Direction::South.clone());
+        assert_eq!(rover.direction, Direction::South);
+    }
+
+    #[test]
+    fn rover_can_have_west_direction() {
+        let rover: RustRover = construct_rover_with_direction(Direction::West.clone());
+        assert_eq!(rover.direction, Direction::West);
+    }
+
+    fn construct_rover_with_direction(direction: Direction) -> RustRover {
+        let starting_coordinate: Coordinate = Coordinate { x: 0, y: 0 };
+        RustRover::new(starting_coordinate.clone(), direction.clone())
+    }
 }
