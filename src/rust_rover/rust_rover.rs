@@ -22,6 +22,9 @@ struct Coordinate {
 #[derive(PartialEq, Debug, Clone)]
 enum Direction {
     North,
+    East,
+    South,
+    West,
 }
 
 
