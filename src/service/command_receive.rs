@@ -21,4 +21,34 @@ mod command_receive_service_tests {
             Err(_) => panic!("Expected test to not panic"),
         }
     }
+
+    #[test]
+    fn rover_moves_forward_when_given_a_forward_command() {
+        let rover: TestRover = TestRover::new();
+        let command_array = ['f'];
+        receive_command(rover, &command_array).expect("expected test to not panic");
+        assert_eq!(rover.test_action.expect("expected action to be taken"), TestAction::MoveForward);
+    }
+
+    struct TestRover {
+        test_action: Option<TestAction>,
+    }
+
+    enum TestAction {
+        MoveForward
+    }
+
+    impl TestRover {
+        pub fn new() -> TestRover {
+            TestRover {
+                test_action: None,
+            }
+        }
+    }
+
+    impl Rover for TestRover {
+        fn move_forward(&mut self) -> () {
+            self.test_action = Option::from(TestAction::MoveForward);
+        }
+    }
 }
