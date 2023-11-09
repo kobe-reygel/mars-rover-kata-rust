@@ -19,6 +19,12 @@ struct Coordinate {
     y: i32,
 }
 
+impl Coordinate {
+    fn from(x: i32, y: i32) -> Coordinate {
+        Coordinate { x, y }
+    }
+}
+
 #[derive(PartialEq, Debug, Clone)]
 enum Direction {
     North,
@@ -31,43 +37,40 @@ enum Direction {
 
 #[cfg(test)]
 mod rust_rover_tests {
-    use crate::rust_rover::rust_rover::*;
+    use crate::domain::rust_rover_aggregate::*;
 
     #[test]
     fn rover_can_be_initialized_with_starting_point_and_direction() {
-        let starting_coordinate: Coordinate = Coordinate { x: 0, y: 0 };
-        let starting_direction: Direction = Direction::North;
-        let rover: RustRover = RustRover::new(starting_coordinate.clone(), starting_direction.clone());
-        assert_eq!(rover.coordinate, starting_coordinate);
-        assert_eq!(rover.direction, starting_direction);
+        let rover: RustRover = RustRover::new(Coordinate::from(14,0), Direction::North);
+        assert_eq!(rover.coordinate, Coordinate::from(14,0));
+        assert_eq!(rover.direction, Direction::North);
     }
 
     #[test]
     fn rover_can_have_north_direction() {
-        let rover: RustRover = construct_rover_with_direction(Direction::North.clone());
+        let rover: RustRover = construct_rover_with_direction(Direction::North);
         assert_eq!(rover.direction, Direction::North);
     }
 
     #[test]
     fn rover_can_have_east_direction() {
-        let rover: RustRover = construct_rover_with_direction(Direction::East.clone());
+        let rover: RustRover = construct_rover_with_direction(Direction::East);
         assert_eq!(rover.direction, Direction::East);
     }
 
     #[test]
     fn rover_can_have_south_direction() {
-        let rover: RustRover = construct_rover_with_direction(Direction::South.clone());
+        let rover: RustRover = construct_rover_with_direction(Direction::South);
         assert_eq!(rover.direction, Direction::South);
     }
 
     #[test]
     fn rover_can_have_west_direction() {
-        let rover: RustRover = construct_rover_with_direction(Direction::West.clone());
+        let rover: RustRover = construct_rover_with_direction(Direction::West);
         assert_eq!(rover.direction, Direction::West);
     }
 
     fn construct_rover_with_direction(direction: Direction) -> RustRover {
-        let starting_coordinate: Coordinate = Coordinate { x: 0, y: 0 };
-        RustRover::new(starting_coordinate.clone(), direction.clone())
+        RustRover::new(Coordinate::from(0,0), direction)
     }
 }
