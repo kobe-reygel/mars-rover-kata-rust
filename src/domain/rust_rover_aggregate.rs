@@ -13,6 +13,12 @@ impl RustRover {
     }
 }
 
+impl Default for RustRover {
+    fn default() -> Self {
+        RustRover::new(Coordinate::from(0,0), Direction::North)
+    }
+}
+
 #[derive(PartialEq, Debug, Clone)]
 pub struct Coordinate {
     x: i32,
