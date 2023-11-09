@@ -13,6 +13,16 @@ impl RustRover {
     }
 }
 
+pub trait RoverActions {
+    fn move_forward(&mut self);
+}
+
+impl RoverActions for RustRover {
+    fn move_forward(&mut self) {
+        ()
+    }
+}
+
 impl Default for RustRover {
     fn default() -> Self {
         RustRover::new(Coordinate::from(0,0), Direction::North)
