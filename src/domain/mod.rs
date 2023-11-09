@@ -1,1 +1,1 @@
-mod rust_rover_aggregate;
+pub(crate) mod rust_rover_aggregate;

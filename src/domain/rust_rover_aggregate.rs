@@ -1,11 +1,11 @@
 #[derive(PartialEq, Debug, Clone)]
-struct RustRover {
+pub struct RustRover {
     coordinate: Coordinate,
     direction: Direction,
 }
 
 impl RustRover {
-    fn new(coordinate: Coordinate, direction: Direction) -> RustRover {
+    pub fn new(coordinate: Coordinate, direction: Direction) -> RustRover {
         RustRover {
             coordinate,
             direction
@@ -14,19 +14,19 @@ impl RustRover {
 }
 
 #[derive(PartialEq, Debug, Clone)]
-struct Coordinate {
+pub struct Coordinate {
     x: i32,
     y: i32,
 }
 
 impl Coordinate {
-    fn from(x: i32, y: i32) -> Coordinate {
+    pub fn from(x: i32, y: i32) -> Coordinate {
         Coordinate { x, y }
     }
 }
 
 #[derive(PartialEq, Debug, Clone)]
-enum Direction {
+pub enum Direction {
     North,
     East,
     South,
