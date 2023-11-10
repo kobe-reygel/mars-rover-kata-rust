@@ -14,7 +14,8 @@ impl RustRover {
 }
 
 pub trait RoverActions {
-    fn move_forward(&mut self);
+    fn move_forward(&mut self) -> ();
+    fn move_backward(&mut self) -> ();
 }
 
 impl RoverActions for RustRover {
@@ -25,6 +26,10 @@ impl RoverActions for RustRover {
             Direction::South => self.coordinate.y -= 1,
             Direction::West => self.coordinate.x -= 1,
         }
+    }
+
+    fn move_backward(&mut self) -> () {
+        todo!()
     }
 }
 
