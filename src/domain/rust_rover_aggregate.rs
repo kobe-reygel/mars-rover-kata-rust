@@ -120,5 +120,12 @@ mod rust_rover_tests {
             rover.move_forward();
             assert_eq!(rover.coordinate, Coordinate::from(0,-1));
         }
+
+        #[test]
+        fn move_forward_when_rover_facing_west_then_moves_left() {
+            let mut rover: RustRover = RustRover::new(Coordinate::from(0,0), Direction::West);
+            rover.move_forward();
+            assert_eq!(rover.coordinate, Coordinate::from(-1,0));
+        }
     }
 }
