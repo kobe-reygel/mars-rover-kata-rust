@@ -21,6 +21,7 @@ impl RoverActions for RustRover {
     fn move_forward(&mut self) {
         match self.direction {
             Direction::North => self.coordinate.y += 1,
+            Direction::East => self.coordinate.x += 1,
             _ => {}
         }
         ()
