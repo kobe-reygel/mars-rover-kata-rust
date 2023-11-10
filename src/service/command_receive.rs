@@ -1,9 +1,11 @@
 use crate::domain::rust_rover_aggregate::*;
 fn receive_command<'a>(rover: &'a mut impl RoverActions, command_array: &[char]) -> Result<&'a mut impl RoverActions, CommandReceiveError> {
-    if command_array[0] == 'f' {
-        rover.move_forward();
-    } else if command_array[0] == 'b' {
-        rover.move_backward();
+    for command in command_array {
+        if *command == 'f' {
+            rover.move_forward();
+        } else if *command == 'b' {
+            rover.move_backward();
+        }
     }
     Ok(rover)
 
