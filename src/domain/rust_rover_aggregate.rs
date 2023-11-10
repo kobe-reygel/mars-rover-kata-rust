@@ -33,8 +33,7 @@ impl RoverActions for RustRover {
             Direction::North => self.coordinate.y -= 1,
             Direction::East => self.coordinate.x -= 1,
             Direction::South => self.coordinate.y += 1,
-            _ => ()
-        }
+            Direction::West => self.coordinate.x += 1,        }
     }
 }
 
