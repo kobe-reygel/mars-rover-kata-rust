@@ -29,7 +29,10 @@ impl RoverActions for RustRover {
     }
 
     fn move_backward(&mut self) -> () {
-        todo!()
+        match self.direction {
+            Direction::North => self.coordinate.y -= 1,
+            _ => ()
+        }
     }
 }
 
