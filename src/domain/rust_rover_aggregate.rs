@@ -141,5 +141,12 @@ mod rust_rover_tests {
             rover.move_backward();
             assert_eq!(rover.coordinate, Coordinate::from(0, -1));
         }
+
+        #[test]
+        fn move_backward_when_rover_facing_east_then_moves_left() {
+            let mut rover: RustRover = RustRover::new(Coordinate::from(0, 0), Direction::East);
+            rover.move_backward();
+            assert_eq!(rover.coordinate, Coordinate::from(-1, 0));
+        }
     }
 }
