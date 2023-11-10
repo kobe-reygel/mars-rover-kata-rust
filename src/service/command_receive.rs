@@ -32,13 +32,22 @@ mod command_receive_service_tests {
         assert_eq!(rover.test_action.expect("expected action to be taken"), TestAction::MoveForward);
     }
 
+    #[test]
+    fn rover_moves_backward_when_given_a_backward_command() {
+        let mut rover: TestRover = TestRover::new();
+        let command_array = ['b'];
+        receive_command(&mut rover, &command_array).expect("expected test to not panic");
+        assert_eq!(rover.test_action.expect("expected action to be taken"), TestAction::MoveBackward);
+    }
+
     struct TestRover {
         test_action: Option<TestAction>,
     }
 
     #[derive(Debug, PartialEq)]
     enum TestAction {
-        MoveForward
+        MoveForward,
+        MoveBackward,
     }
 
     impl TestRover {
@@ -52,6 +61,10 @@ mod command_receive_service_tests {
     impl RoverActions for TestRover {
         fn move_forward(&mut self) -> () {
             self.test_action = Option::from(TestAction::MoveForward);
+        }
+
+        fn move_backward(&mut self) -> () {
+            self.test_action = Option::from(TestAction::MoveBackward);
         }
     }
 }
