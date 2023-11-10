@@ -34,7 +34,7 @@ mod command_receive_service_tests {
         let mut rover: TestRover = TestRover::new();
         let command_array = ['f'];
         receive_command(&mut rover, &command_array).expect("expected test to not panic");
-        assert_eq!(rover.test_action.expect("expected action to be taken"), TestAction::MoveForward);
+        assert_eq!(rover.test_actions, vec![TestAction::MoveForward]);
     }
 
     #[test]
@@ -42,11 +42,19 @@ mod command_receive_service_tests {
         let mut rover: TestRover = TestRover::new();
         let command_array = ['b'];
         receive_command(&mut rover, &command_array).expect("expected test to not panic");
-        assert_eq!(rover.test_action.expect("expected action to be taken"), TestAction::MoveBackward);
+        assert_eq!(rover.test_actions, vec![TestAction::MoveBackward]);
+    }
+
+    #[test]
+    fn rover_can_process_multiple_commands_correctly() {
+        let mut rover: TestRover = TestRover::new();
+        let command_array = ['b', 'f'];
+        receive_command(&mut rover, &command_array).expect("expected test to not panic");
+        assert_eq!(rover.test_actions, vec![TestAction::MoveBackward, TestAction::MoveForward]);
     }
 
     struct TestRover {
-        test_action: Option<TestAction>,
+        test_actions: Vec<TestAction>,
     }
 
     #[derive(Debug, PartialEq)]
@@ -58,18 +66,18 @@ mod command_receive_service_tests {
     impl TestRover {
         pub fn new() -> TestRover {
             TestRover {
-                test_action: None,
+                test_actions: vec![],
             }
         }
     }
 
     impl RoverActions for TestRover {
         fn move_forward(&mut self) -> () {
-            self.test_action = Option::from(TestAction::MoveForward);
+            self.test_actions.push(TestAction::MoveForward);
         }
 
         fn move_backward(&mut self) -> () {
-            self.test_action = Option::from(TestAction::MoveBackward);
+            self.test_actions.push(TestAction::MoveBackward);
         }
     }
 }
