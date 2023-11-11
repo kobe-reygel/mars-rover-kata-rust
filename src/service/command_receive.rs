@@ -1,5 +1,5 @@
 use crate::domain::rust_rover_aggregate::*;
-fn receive_command<'a>(rover: &'a mut impl RoverActions, command_array: &[char]) -> Result<&'a mut impl RoverActions, CommandReceiveError> {
+pub fn receive_command<'a>(rover: &'a mut impl RoverActions, command_array: &[char]) -> Result<&'a mut impl RoverActions, CommandReceiveError> {
     for command in command_array {
         if *command == 'f' {
             rover.move_forward();
@@ -12,9 +12,7 @@ fn receive_command<'a>(rover: &'a mut impl RoverActions, command_array: &[char])
 }
 
 #[derive(Debug)]
-struct CommandReceiveError;
-
-
+pub struct CommandReceiveError;
 
 #[cfg(test)]
 mod command_receive_service_tests {
